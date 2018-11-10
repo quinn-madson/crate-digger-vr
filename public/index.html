@@ -14,6 +14,7 @@
   <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
   <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
   <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
   <script src="/js/html-imports.min.js"></script>
   <link rel="import" href="templates.html">
 </head>
@@ -48,6 +49,7 @@
         <a-sphere class="head" visible="false" random-color></a-sphere>
       </a-entity>
       <a-entity class="right-controller" position rotation 
+        teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
         networked="template:#right-hand-template; attachTemplateToLocal: false"
         daydream-controls="hand: right; model: true" 
         gearvr-controls="hand: right; model: true" 
@@ -57,6 +59,7 @@
         oculus-go-controls="hand: right; model: true">
       </a-entity>
       <a-entity class="left-controller" position rotation 
+        teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
         networked="template:#left-hand-template;attachTemplateToLocal: false"
         oculus-touch-controls="hand: left; model: true" 
         vive-controls="hand: left; model: true"
