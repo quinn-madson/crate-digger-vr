@@ -71,16 +71,17 @@
     <a-entity gltf-model="#room"></a-entity>
 
     <!-- Table -->
-    <a-entity gltf-model="#table" position="2.416 0.540 2.573" rotation="0 32.322 0"></a-entity>
+    <a-entity gltf-model="#table" position="2.416 0.540 2.573" rotation="0 32.322 0" static-body></a-entity>
 
     <!-- Crate -->
     <a-entity class="interact" gltf-model="#crate" 
       position="1.890 1.077 3.144" rotation="0 38.071 0" scale="0.030 0.030 0.030"
-      hoverable grabbable stretchable draggable dropppable>
+      hoverable grabbable stretchable draggable dropppable
+      dynamic-body>
     </a-entity>
 
     <!-- Floor -->
-    <a-entity position="0 0 0" geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0" material="visible:false">
+    <a-entity position="0 0 0" geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0" material="visible:false" static-body>
     </a-entity>
     <!-- /Floor -->
 
