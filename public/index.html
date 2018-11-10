@@ -9,7 +9,6 @@
   <script src="easyrtc/easyrtc.js"></script>
   <script src="https://unpkg.com/networked-aframe@^0.6.0/dist/networked-aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
-  <script src="https://unpkg.com/aframe-environment-component@^1.1.0/index.js"></script>
   <script src="/js/spawn-in-circle.component.js"></script>
   <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
   <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
@@ -22,10 +21,11 @@
       room: basic;
       debug: true;
     " 
-    environment="preset: forest;"
   >
     <a-assets>
       <img id="waitfortemplates" />
+      <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>
+      <!-- <a-asset-item id="room" src="assets/room/scene.gltf"></a-asset-item> -->
     </a-assets>
 
     <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera position="0 1.6 0" spawn-in-circle="radius:3" wasd-controls look-controls>
@@ -34,6 +34,9 @@
         random-color
       ></a-sphere>
     </a-entity>
+
+    <!-- Room -->
+    <a-entity gltf-model="#room"></a-entity>
 
     <!-- Floor -->
     <a-entity 
