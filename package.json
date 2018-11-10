@@ -1,0 +1,27 @@
+{
+  "name": "crate-digger-vr",
+  "version": "0.0.1",
+  "description": "Crate Digger VR",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "eslint": "^5.8.0",
+    "networked-aframe": "^0.6.0"
+  },
+  "repository": {
+    "url": "https://github.com/quinn-madson/crate-digger-vr.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "music",
+    "webvr",
+    "social"
+  ],
+  "standard": {
+    "ignore": [
+      "public/"
+    ]
+  }
+}
