@@ -16,6 +16,24 @@
   <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
   <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
   <script src="/js/html-imports.min.js"></script>
+  <script>
+    // turn controller's physics presence on only while button held down
+    AFRAME.registerComponent('phase-shift', {
+      init: function () {
+        var el = this.el
+        el.addEventListener('gripdown', function () {
+          el.setAttribute('collision-filter', {
+            collisionForces: true
+          })
+        })
+        el.addEventListener('gripup', function () {
+          el.setAttribute('collision-filter', {
+            collisionForces: false
+          })
+        })
+      }
+    })
+  </script>
   <link rel="import" href="templates.html">
 </head>
 
@@ -30,40 +48,28 @@
       <a-asset-item id="crate" src="assets/crate/Storage Crate.gltf"></a-asset-item>
       <a-asset-item id="leftHand" src="assets/left-hand/model.gltf"></a-asset-item>
       <a-asset-item id="rightHand" src="assets/right-hand/model.gltf"></a-asset-item>
-      <a-mixin id="touch" physics-collider phase-shift collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02"
-        super-hands=" colliderEvent: collisions;
+      <a-mixin id="touch" physics-collider  phase-shift collision-filter="collisionForces: false"
+        static-body="shape: sphere; sphereRadius: 0.02" super-hands=" colliderEvent: collisions;
                       colliderEventProperty: els;
                       colliderEndEvent: collisions;
                       colliderEndEventProperty: clearedEls;">
       </a-mixin>
     </a-assets>
 
-    <a-entity id="cameraRig" 
-      networked="template:#cameraRig-template; attachTemplateToLocal: false" 
-      position rotation
+    <a-entity id="cameraRig" networked="template:#cameraRig-template; attachTemplateToLocal: false" position rotation
       spawn-in-circle="radius:4">
-      <a-entity id="player" 
-        networked="template:#avatar-template;attachTemplateToLocal:false;" 
-        camera position="0 1.6 0"
+      <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera position="0 1.6 0"
         wasd-controls look-controls>
         <a-sphere class="head" visible="false" random-color></a-sphere>
       </a-entity>
-      <a-entity class="right-controller" position rotation 
-        teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
-        networked="template:#right-hand-template; attachTemplateToLocal: false"
-        daydream-controls="hand: right; model: true" 
-        gearvr-controls="hand: right; model: true" 
-        oculus-touch-controls="hand: right; model: true"
-        vive-controls="hand: right; model: true" 
-        windows-motion-controls="hand: right; model: true"
-        oculus-go-controls="hand: right; model: true">
+      <a-entity class="right-controller" mixin="touch" position rotation teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
+        networked="template:#right-hand-template; attachTemplateToLocal: false" daydream-controls="hand: right; model: true"
+        gearvr-controls="hand: right; model: true" oculus-touch-controls="hand: right; model: true" vive-controls="hand: right; model: true"
+        windows-motion-controls="hand: right; model: true" oculus-go-controls="hand: right; model: true">
       </a-entity>
-      <a-entity class="left-controller" position rotation 
-        teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
-        networked="template:#left-hand-template;attachTemplateToLocal: false"
-        oculus-touch-controls="hand: left; model: true" 
-        vive-controls="hand: left; model: true"
-        windows-motion-controls="hand: left; model: true">
+      <a-entity class="left-controller" mixin="touch" position rotation teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
+        networked="template:#left-hand-template;attachTemplateToLocal: false" oculus-touch-controls="hand: left; model: true"
+        vive-controls="hand: left; model: true" windows-motion-controls="hand: left; model: true">
       </a-entity>
     </a-entity>
 
@@ -74,14 +80,13 @@
     <a-entity gltf-model="#table" position="2.416 0.540 2.573" rotation="0 32.322 0" static-body></a-entity>
 
     <!-- Crate -->
-    <a-entity class="interact" gltf-model="#crate" 
-      position="1.890 1.077 3.144" rotation="0 38.071 0" scale="0.030 0.030 0.030"
-      hoverable grabbable stretchable draggable dropppable
-      dynamic-body>
+    <a-entity class="interact" gltf-model="#crate" position="1.890 10.077 3.144" rotation="0 38.071 0" scale="0.030 0.030 0.030"
+      hoverable grabbable stretchable draggable dropppable dynamic-body>
     </a-entity>
 
     <!-- Floor -->
-    <a-entity position="0 0 0" geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0" material="visible:false" static-body>
+    <a-entity position="0 0 0" geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0" material="visible:false"
+      static-body>
     </a-entity>
     <!-- /Floor -->
 
