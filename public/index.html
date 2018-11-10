@@ -24,11 +24,12 @@
   >
     <a-assets>
       <img id="waitfortemplates" />
-      <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>
-      <!-- <a-asset-item id="room" src="assets/room/scene.gltf"></a-asset-item> -->
+      <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>\
+      <a-asset-item id="table" src="assets/table/scene.gltf"></a-asset-item>\
+      <a-asset-item id="crate" src="assets/crate/Storage Crate.gltf"></a-asset-item>\
     </a-assets>
 
-    <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera position="0 1.6 0" spawn-in-circle="radius:3" wasd-controls look-controls>
+    <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera position="0 1 0" spawn-in-circle="radius:3" wasd-controls look-controls>
       <a-sphere class="head"
         visible="false"
         random-color
@@ -37,6 +38,12 @@
 
     <!-- Room -->
     <a-entity gltf-model="#room"></a-entity>
+    
+    <!-- Table -->
+    <a-entity gltf-model="#table" position="2.416 0.540 2.573" rotation="0 32.322 0"></a-entity>
+
+    <!-- Crate -->
+    <a-entity gltf-model="#crate" position="1.890 1.077 3.144" rotation="0 38.071 0" scale="0.030 0.030 0.030"></a-entity>
 
     <!-- Floor -->
     <a-entity 
