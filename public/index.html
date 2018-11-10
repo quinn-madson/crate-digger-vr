@@ -12,6 +12,9 @@
   <script src="/js/spawn-in-circle.component.js"></script>
   <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
   <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
+  <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
   <script src="/js/html-imports.min.js"></script>
   <link rel="import" href="templates.html">
 </head>
@@ -19,38 +22,66 @@
 <body>
   <a-scene networked-scene="
       room: basic;
-      debug: true;
-    " 
-  >
+      debug: true;" physics>
     <a-assets>
       <img id="waitfortemplates" />
-      <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>\
-      <a-asset-item id="table" src="assets/table/scene.gltf"></a-asset-item>\
-      <a-asset-item id="crate" src="assets/crate/Storage Crate.gltf"></a-asset-item>\
+      <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>
+      <a-asset-item id="table" src="assets/table/scene.gltf"></a-asset-item>
+      <a-asset-item id="crate" src="assets/crate/Storage Crate.gltf"></a-asset-item>
+      <a-asset-item id="leftHand" src="assets/left-hand/model.gltf"></a-asset-item>
+      <a-asset-item id="rightHand" src="assets/right-hand/model.gltf"></a-asset-item>
+      <a-mixin id="touch" physics-collider phase-shift collision-filter="collisionForces: false" static-body="shape: sphere; sphereRadius: 0.02"
+        super-hands=" colliderEvent: collisions;
+                      colliderEventProperty: els;
+                      colliderEndEvent: collisions;
+                      colliderEndEventProperty: clearedEls;">
+      </a-mixin>
     </a-assets>
 
-    <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera position="0 1 0" spawn-in-circle="radius:3" wasd-controls look-controls>
-      <a-sphere class="head"
-        visible="false"
-        random-color
-      ></a-sphere>
+    <a-entity id="cameraRig" 
+      networked="template:#cameraRig-template; attachTemplateToLocal: false" 
+      position rotation
+      spawn-in-circle="radius:4">
+      <a-entity id="player" 
+        networked="template:#avatar-template;attachTemplateToLocal:false;" 
+        camera position="0 1.6 0"
+        wasd-controls look-controls>
+        <a-sphere class="head" visible="false" random-color></a-sphere>
+      </a-entity>
+      <a-entity class="right-controller" position rotation 
+        teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
+        networked="template:#right-hand-template; attachTemplateToLocal: false"
+        daydream-controls="hand: right; model: true" 
+        gearvr-controls="hand: right; model: true" 
+        oculus-touch-controls="hand: right; model: true"
+        vive-controls="hand: right; model: true" 
+        windows-motion-controls="hand: right; model: true"
+        oculus-go-controls="hand: right; model: true">
+      </a-entity>
+      <a-entity class="left-controller" position rotation 
+        teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
+        networked="template:#left-hand-template;attachTemplateToLocal: false"
+        oculus-touch-controls="hand: left; model: true" 
+        vive-controls="hand: left; model: true"
+        windows-motion-controls="hand: left; model: true">
+      </a-entity>
     </a-entity>
 
     <!-- Room -->
     <a-entity gltf-model="#room"></a-entity>
-    
+
     <!-- Table -->
-    <a-entity gltf-model="#table" position="2.416 0.540 2.573" rotation="0 32.322 0"></a-entity>
+    <a-entity gltf-model="#table" position="2.416 0.540 2.573" rotation="0 32.322 0" static-body></a-entity>
 
     <!-- Crate -->
-    <a-entity gltf-model="#crate" position="1.890 1.077 3.144" rotation="0 38.071 0" scale="0.030 0.030 0.030"></a-entity>
+    <a-entity class="interact" gltf-model="#crate" 
+      position="1.890 1.077 3.144" rotation="0 38.071 0" scale="0.030 0.030 0.030"
+      hoverable grabbable stretchable draggable dropppable
+      dynamic-body>
+    </a-entity>
 
     <!-- Floor -->
-    <a-entity 
-      position="0 0 0" 
-      geometry="primitive: plane; width: 10000; height: 10000;" 
-      rotation="-90 0 0" 
-      material="visible:false">
+    <a-entity position="0 0 0" geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0" material="visible:false" static-body>
     </a-entity>
     <!-- /Floor -->
 
