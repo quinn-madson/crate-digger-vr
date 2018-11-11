@@ -6,6 +6,7 @@ AFRAME.registerComponent('tv-component', {
     tv.setAttribute('mixin', 'tv-model');
     this.el.addEventListener('raycaster-intersected', function () {
       playVideo();
+      console.log('intercepted -----')
     });
     this.el.appendChild(tv);
   }

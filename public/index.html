@@ -60,7 +60,7 @@
         rotation="0 -85.7 0"
         static-body >
       </a-mixin>
-      <a-mixin id="point" raycaster="showLine: true; objects: .cube"
+      <a-mixin id="point" raycaster="showLine: true; objects: .intersect"
         collision-filter="collisionForces: false"
         static-body="shape: sphere; sphereRadius: 0.001"
         super-hands="colliderEvent: raycaster-intersection;
@@ -146,7 +146,7 @@
     </a-entity>
 
     <!-- TV/Video Player -->
-    <a-entity tv-component>
+    <a-entity tv-component class="intersect">
       <a-video src="#music-video"
         position="-5.686 1.911 -0.001"
         width="1.150"
