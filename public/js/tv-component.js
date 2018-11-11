@@ -3,10 +3,14 @@ AFRAME.registerComponent('tv-component', {
 
   init: function () {
     var tv = window.document.createElement('a-entity');
+    var video = window.document.querySelector('#music-video');
     tv.setAttribute('mixin', 'tv-model');
     this.el.addEventListener('raycaster-intersected', function () {
-      playVideo();
-      console.log('intercepted -----')
+      if (video.seeking) {
+        pauseVideo();
+      } else {
+        playVideo();
+      }
     });
     this.el.appendChild(tv);
   }
