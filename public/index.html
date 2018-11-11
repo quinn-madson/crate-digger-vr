@@ -38,7 +38,7 @@
         physics-collider 
         phase-shift 
         collision-filter="collisionForces: false" 
-        static-body="shape: sphere; sphereRadius: 0.02"
+        static-body="shape: sphere; sphereRadius: 0.04"
         super-hands="colliderEvent: collisions;
           colliderEventProperty: els;
           colliderEndEvent: collisions;
@@ -47,7 +47,9 @@
       <a-mixin id="record" 
         geometry="primitive: box; width: 0.4; height: 0.4; depth: 0.007;" 
         grabbable 
-        dynamic-body
+        draggable
+        droppable
+        dynamic-body="shape: box; mass: 2"
         stretchable 
         class="interact" 
         material="side: double" 
@@ -114,6 +116,7 @@
     </a-entity>
 
     <a-entity id="turntable" 
+      turntable
       scale="0.040 0.040 0.040" 
       gltf-model="#turntable" 
       position="2.950 1.124 2.223"
@@ -135,7 +138,7 @@
       stretchable 
       draggable 
       dropppable 
-      dynamic-body>
+      dynamic-body="shape: box; mass: 5;">
     </a-entity>
 
     <!-- Floor -->

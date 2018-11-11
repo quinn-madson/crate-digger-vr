@@ -1,11 +1,9 @@
 window.AFRAME.registerComponent('turntable', {
-	schema: {
-	},
-	init: function () {
+	play: function () {
 		this.el.addEventListener('drag-drop', function (evt) {
-			console.log('>>>> DRAG DROP	evt.detail.dropped: ', evt.detail.dropped)
+			var info = evt.detail.dropped.getAttribute('info')
+			var albumId = evt.detail.dropped.getAttribute('albumId')
+			playRecord(albumId)
 		})
-	},
-	update: function () {},
-	remove: function () {},
+	}
 });
