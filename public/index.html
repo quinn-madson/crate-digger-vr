@@ -21,6 +21,7 @@
   <script src="/js/turntable.component.js"></script>
   <script src="/js/oauth-signature.js"></script>
   <script src="/js/app.js"></script>
+  <script src="/js/tv-component.js"></script>
   <link rel="import" href="templates.html">
 </head>
 
@@ -62,7 +63,25 @@
         material="side: double" 
         position="2.416 4 2.573">
       </a-mixin>
-      <video id="music-video" src="http://res.cloudinary.com/crate-digger/video/upload/v1541916370/johnny-cash-jackson-live.mp4" autoplay controls loop="true"></video>
+      <a-mixin id="tv-model"
+        gltf-model="#tv" 
+        position="-6.49 -0.188 -0.268"
+        scale="1.1 1.3 1"
+        rotation="0 -85.7 0"
+        static-body >
+      </a-mixin>
+      <a-mixin id="point" raycaster="showLine: true; objects: .intersect; far: 2;"
+        collision-filter="collisionForces: false"
+        static-body="shape: sphere; sphereRadius: 0.001"
+        super-hands="colliderEvent: raycaster-intersection;
+          colliderEventProperty: els;
+          colliderEndEvent:raycaster-intersection-cleared;
+          colliderEndEventProperty: clearedEls;">
+        </a-mixin>
+
+      <video id="music-video"
+        src="https://res.cloudinary.com/crate-digger/video/upload/v1541953759/johnny-cash-walk-the-line.mp4">
+      </video>
     </a-assets>
 
     <a-sound id="hifi" 
@@ -96,7 +115,7 @@
         <a-sphere class="head" visible="false" random-color></a-sphere>
       </a-entity>
       <a-entity class="right-controller" 
-        mixin="touch" 
+        mixin="touch point" 
         position 
         rotation 
         teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
@@ -158,17 +177,12 @@
     </a-entity>
 
     <!-- TV/Video Player -->
-    <a-entity id="tv"
-      gltf-model="#tv" 
-      position="-6.49 -0.188 -0.268"
-      scale="1.1 1.3 1"
-      rotation="0 -85.7 0"
-      static-body>
+    <a-entity tv-component class="intersect">
       <a-video src="#music-video"
-        position="0.281 1.605 -0.787"
-        width="1"
-        height="0.45"
-        rotation= "0 180 0" >
+        position="-5.686 1.911 -0.001"
+        width="1.150"
+        height="0.600"
+        rotation= "0 -85.700 0" >
       </a-video>
     </a-entity>
 

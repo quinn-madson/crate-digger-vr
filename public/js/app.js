@@ -118,6 +118,11 @@ function audioTest() {
 }
 
 function playVideo() {
-  var player = window.document.querySelector('#music-video');
-  player.play();
+  var video = window.document.querySelector('#music-video');
+  video.play();
+}
+
+function pauseVideo() {
+  var video = window.document.querySelector('#music-video');
+  video.pause();
 }
