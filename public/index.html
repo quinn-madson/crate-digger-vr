@@ -60,7 +60,7 @@
         rotation="0 -85.7 0"
         static-body >
       </a-mixin>
-      <a-mixin id="point" raycaster="showLine: true; objects: .intersect"
+      <a-mixin id="point" raycaster="showLine: true; objects: .intersect; far: 2;"
         collision-filter="collisionForces: false"
         static-body="shape: sphere; sphereRadius: 0.001"
         super-hands="colliderEvent: raycaster-intersection;
