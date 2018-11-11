@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "eslint": "^5.8.0",
-    "networked-aframe": "^0.6.0"
+    "networked-aframe": "^0.6.0",
+    "oauth-signature": "^1.5.0"
   },
   "repository": {
     "url": "https://github.com/quinn-madson/crate-digger-vr.git"
