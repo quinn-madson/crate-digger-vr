@@ -75,6 +75,6 @@ var rtc = easyrtc.listen(app, socketServer, null, function(err, rtcRef) {
 });
 
 //listen on port
-webServer.listen(port, function () {
-    console.log('listening on http://localhost:' + port);
-});
+// webServer.listen(port, function () {
+//     console.log('listening on http://localhost:' + port);
+// });
