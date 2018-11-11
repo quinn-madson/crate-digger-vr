@@ -16,8 +16,9 @@
   <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
   <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
   <script src="/js/html-imports.min.js"></script>
-  <script src="/js/phase-shift.js"></script>
-  <script src="/js/record-component.js"></script>
+  <script src="/js/phase-shift.component.js"></script>
+  <script src="/js/record-sleeve.component.js"></script>
+  <script src="/js/turntable.component.js"></script>
   <script src="/js/oauth-signature.js"></script>
   <script src="/js/app.js"></script>
   <link rel="import" href="templates.html">
@@ -29,6 +30,7 @@
       <img id="waitfortemplates" />
       <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>
       <a-asset-item id="table" src="assets/table/scene.gltf"></a-asset-item>
+      <a-asset-item id="turntable" src="assets/turntable/scene.gltf"></a-asset-item>
       <a-asset-item id="crate" src="assets/crate/Storage Crate.gltf"></a-asset-item>
       <a-asset-item id="leftHand" src="assets/left-hand/model.gltf"></a-asset-item>
       <a-asset-item id="rightHand" src="assets/right-hand/model.gltf"></a-asset-item>
@@ -49,7 +51,7 @@
         stretchable 
         class="interact" 
         material="side: double" 
-        position="2.416 10 2.573">
+        position="2.416 4 2.573">
       </a-mixin>
     </a-assets>
 
@@ -109,6 +111,16 @@
       position="2.416 0.540 2.573" 
       rotation="0 32.322 0" 
       static-body>
+    </a-entity>
+
+    <a-entity id="turntable" 
+      scale="0.040 0.040 0.040" 
+      gltf-model="#turntable" 
+      position="2.950 1.124 2.223"
+      rotation="0 -147.440 0"
+      static-body
+      droppable
+      collision-filter="collisionForces: false">
     </a-entity>
 
     <!-- Crate -->

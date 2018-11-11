@@ -1,4 +1,4 @@
-window.AFRAME.registerComponent('record-component', {
+window.AFRAME.registerComponent('record-sleeve', {
 	schema: {
 		// defaults
 		cover: {
