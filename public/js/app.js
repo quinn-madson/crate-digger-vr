@@ -63,9 +63,9 @@ function playTrack(trackId) {
   }
   streamUrl = streamUrl + 'oauth_signature=' + encodedSignature;
   window.document.querySelector('#hifi').setAttribute('src', streamUrl);
-  window.document.querySelector('#hifi2').setAttribute('src', streamUrl);
+  //window.document.querySelector('#hifi2').setAttribute('src', streamUrl);
   window.document.querySelector('#hifi').components.sound.playSound();
-  window.document.querySelector('#hifi2').components.sound.playSound();
+  //window.document.querySelector('#hifi2').components.sound.playSound();
 }
 
 function getTracks(albumId) {
