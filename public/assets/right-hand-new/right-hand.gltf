@@ -1,0 +1,249 @@
+{
+    "accessors": [
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 304,
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "accessor_buffer_mesh_m0-PolyPaper21_-82102_COLOR_0_0",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 304,
+            "max": [
+                0.827143132686615,
+                0.999481201171875,
+                0.9791558384895325
+            ],
+            "min": [
+                -0.9089632630348206,
+                -0.9996337890625,
+                -0.9729300737380981
+            ],
+            "name": "accessor_buffer_mesh_m0-PolyPaper21_-82102_NORMAL_0",
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5123,
+            "count": 348,
+            "max": [
+                303
+            ],
+            "min": [
+                0
+            ],
+            "name": "accessor_buffer_mesh_m0-PolyPaper21_-82102_0",
+            "type": "SCALAR"
+        },
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 304,
+            "max": [
+                0.12657450139522552,
+                0.0397794246673584,
+                0.10869675874710083
+            ],
+            "min": [
+                -0.12839442491531372,
+                -0.05642819404602051,
+                -0.10536003112792969
+            ],
+            "name": "accessor_buffer_mesh_m0-PolyPaper21_-82102_POSITION_0",
+            "type": "VEC3"
+        }
+    ],
+    "asset": {
+        "copyright": "",
+        "generator": "blendergltf v1.2.0",
+        "version": "2.0"
+    },
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteLength": 3648,
+            "byteOffset": 0,
+            "byteStride": 12,
+            "name": "bufferView_buffer_mesh_m0-PolyPaper21_-82102_POSITION_0",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 3648,
+            "byteOffset": 3648,
+            "byteStride": 12,
+            "name": "bufferView_buffer_mesh_m0-PolyPaper21_-82102_NORMAL_0",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 3648,
+            "byteOffset": 7296,
+            "byteStride": 12,
+            "name": "bufferView_buffer_mesh_m0-PolyPaper21_-82102_COLOR_0_0",
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteLength": 700,
+            "byteOffset": 10944,
+            "name": "bufferView_buffer_mesh_m0-PolyPaper21_-82102_0",
+            "target": 34963
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 11644,
+            "name": "buffer_right-hand",
+            "uri": "buffer_right-hand.bin"
+        }
+    ],
+    "cameras": [
+        {
+            "name": "Camera",
+            "perspective": {
+                "aspectRatio": 1.703595982340029,
+                "yfov": 0.5033799409866333,
+                "zfar": 100.0,
+                "znear": 0.10000000149011612
+            },
+            "type": "perspective"
+        }
+    ],
+    "materials": [
+        {
+            "alphaMode": "OPAQUE",
+            "doubleSided": false,
+            "emissiveFactor": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "name": "BlocksPaper.001",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.64000004529953,
+                    0.64000004529953,
+                    0.64000004529953,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 1.0
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "mesh_m0-PolyPaper21_-82102",
+            "primitives": [
+                {
+                    "attributes": {
+                        "COLOR_0": 0,
+                        "NORMAL": 1,
+                        "POSITION": 3
+                    },
+                    "indices": 2,
+                    "material": 0,
+                    "mode": 4
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "camera": 0,
+            "name": "Camera",
+            "rotation": [
+                -0.09062843769788742,
+                -0.8937962651252747,
+                -0.2099730223417282,
+                0.38578000664711
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "translation": [
+                -7.481131553649902,
+                5.34366512298584,
+                -6.5076398849487305
+            ]
+        },
+        {
+            "name": "Lamp",
+            "rotation": [
+                -0.34203386306762695,
+                -0.5232755541801453,
+                -0.2841663062572479,
+                0.7269423007965088
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                0.9999999403953552
+            ],
+            "translation": [
+                -4.076245307922363,
+                5.903861999511719,
+                1.0054539442062378
+            ]
+        },
+        {
+            "mesh": 0,
+            "name": "node_MeshObject-657385472-PolyPaper21",
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "translation": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        }
+    ],
+    "scene": 0,
+    "scenes": [
+        {
+            "extras": {
+                "active_camera": 0,
+                "background_color": [
+                    0.05087608844041824,
+                    0.05087608844041824,
+                    0.05087608844041824
+                ],
+                "frames_per_second": 24
+            },
+            "name": "Scene",
+            "nodes": [
+                2,
+                1,
+                0
+            ]
+        }
+    ]
+}
