@@ -46,8 +46,9 @@
       <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>
       <a-asset-item id="table" src="assets/table/scene.gltf"></a-asset-item>
       <a-asset-item id="crate" src="assets/crate/Storage Crate.gltf"></a-asset-item>
-      <a-asset-item id="leftHand" src="assets/left-hand/model.gltf"></a-asset-item>
-      <a-asset-item id="rightHand" src="assets/right-hand/model.gltf"></a-asset-item>
+      <a-asset-item id="leftHand" src="assets/left-hand-new/left-hand.gltf"></a-asset-item>
+      <a-asset-item id="rightHand" src="assets/right-hand-new/right-hand.gltf"></a-asset-item>
+      <a-asset-item id="speaker" src="assets/speaker/speaker.gltf"></a-asset-item>
       <a-mixin id="touch" physics-collider  phase-shift collision-filter="collisionForces: false"
         static-body="shape: sphere; sphereRadius: 0.02" super-hands=" colliderEvent: collisions;
                       colliderEventProperty: els;
@@ -89,8 +90,13 @@
       static-body>
     </a-entity>
     <!-- /Floor -->
+     
+    <!-- speakers-->
 
-  </a-scene>
+    <a-entity id="speaker" gltf-model="#speaker" position="7.254 0.011 -1.967" rotation="90 19.325 0" scale="0.075 0.075 0.075"></a-entity>
+    <a-entity id="speaker2" gltf-model="#speaker" position="-3.731939269615076 0.011 -6.607403136367324" rotation="90 128.86044603067273 0" scale="0.075 0.075 0.075"></a-entity>
+    <!-- /speaker-->
+    </a-scene>
 
   <script src="js/naf-templates-schemas.js"></script>
 </body>
