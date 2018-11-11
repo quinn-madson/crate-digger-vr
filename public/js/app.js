@@ -114,3 +114,8 @@ function audioTest() {
   var x = window.document.querySelector('#hifi').components.sound.playSound();
   console.log('x: ', x);
 }
+
+function playVideo() {
+  var player = window.document.querySelector('#music-video');
+  player.play();
+}
