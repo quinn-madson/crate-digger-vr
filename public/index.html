@@ -51,6 +51,7 @@
         material="side: double" 
         position="2.416 10 2.573">
       </a-mixin>
+      <video id="music-video" src="http://res.cloudinary.com/crate-digger/video/upload/v1541916370/johnny-cash-jackson-live.mp4" autoplay controls loop="true"></video>
     </a-assets>
 
     <a-sound id="hifi" 
@@ -125,6 +126,9 @@
       dropppable 
       dynamic-body>
     </a-entity>
+
+    <!-- Video Player -->
+    <a-video src="#music-video" position="-4.4 1.4 2.6" width="1.8" height="1" rotation="0 -50 0"></a-video>
 
     <!-- Floor -->
     <a-entity id="floor"
