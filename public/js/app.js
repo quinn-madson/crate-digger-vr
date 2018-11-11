@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('>> APP INIT <<')
   getRecords();
+  // // TV click event listener
+  // window.document.querySelector('#tv-model').addEventListener('click', function (evt) {
+  //   playVideo();
+  // });  
 });
 
 function getRecords() {
@@ -61,5 +65,6 @@ function audioTest() {
 
 function playVideo() {
   var player = window.document.querySelector('#music-video');
+
   player.play();
 }
