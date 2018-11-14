@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function getRecords() {
   window.fetch(
-      'http://api.7digital.com/1.2/artist/releases?shopId=2020&oauth_consumer_key=7d4vr6cgb392&artistId=1448&usageTypes=adsupportedstreaming&imageSize=800', {
+      'https://api.7digital.com/1.2/artist/releases?shopId=2020&oauth_consumer_key=7d4vr6cgb392&artistId=1448&usageTypes=adsupportedstreaming&imageSize=800', {
         headers: new window.Headers({
           'accept': 'application/json'
         })
@@ -27,7 +27,7 @@ function getRecords() {
 
 function playRecord(albumId) {
   window.fetch(
-      'http://api.7digital.com/1.2/release/tracks?shopId=2020&oauth_consumer_key=7d4vr6cgb392&releaseId=' + albumId + '&usageTypes=adsupportedstreaming', {
+      'https://api.7digital.com/1.2/release/tracks?shopId=2020&oauth_consumer_key=7d4vr6cgb392&releaseId=' + albumId + '&usageTypes=adsupportedstreaming', {
         headers: new window.Headers({
           'accept': 'application/json'
         })
@@ -70,7 +70,7 @@ function playTrack(trackId) {
 
 function getTracks(albumId) {
   window.fetch(
-      'http://api.7digital.com/1.2/release/tracks?shopId=2020&oauth_consumer_key=7d4vr6cgb392&releaseId=' + albumId + '&usageTypes=adsupportedstreaming', {
+      'https://api.7digital.com/1.2/release/tracks?shopId=2020&oauth_consumer_key=7d4vr6cgb392&releaseId=' + albumId + '&usageTypes=adsupportedstreaming', {
         headers: new window.Headers({
           'accept': 'application/json'
         })
