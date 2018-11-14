@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log('>> APP INIT <<')
   setTimeout(function () {
     getRecords();
-  }, 2500)
+  }, 5000)
 });
 
 function getRecords() {
@@ -18,8 +18,9 @@ function getRecords() {
       var releases = resJson.releases.releases;
       console.log(releases);
       for (var i = 0; i < releases.length; i++) {
+        var release  = releases[i]
         var recordSleeve = window.document.createElement('a-entity');
-        recordSleeve.setAttribute('record-sleeve', 'cover: ' + releases[i].image.replace('http://', 'https://') + '; info: ' + JSON.stringify(releases[i]));
+        recordSleeve.setAttribute('record-sleeve', 'cover: ' + release.image.replace('http://', 'https://') + '; info: ' + JSON.stringify(release));
         window.AFRAME.scenes[0].appendChild(recordSleeve);
       }
     })

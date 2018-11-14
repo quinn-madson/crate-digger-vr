@@ -26,7 +26,7 @@
 </head>
 
 <body>
-  <a-scene networked-scene="room: basic; debug: true;" physics>
+  <a-scene networked-scene="room: basic; debug: true;" physics="friction:0.001; restitution: 0.3;iterations: 30; debug: false;">
     <a-assets>
       <img id="waitfortemplates" />
       <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>
@@ -57,11 +57,13 @@
         grabbable 
         draggable
         droppable
-        dynamic-body="shape: box; mass: 2"
+        sleepy="speedLimit:0.8;"
+        dynamic-body="shape: box; mass: 10;"
         stretchable 
         class="interact" 
         material="side: double" 
-        position="2.416 4 2.573">
+        position="2.416 1 2.573"
+        spawn-in-circle="radius:0.4">
       </a-mixin>
       <a-mixin id="tv-model"
         gltf-model="#tv" 
@@ -146,17 +148,25 @@
     <a-entity id="table"
       gltf-model="#table" 
       position="2.416 0.540 2.573" 
-      rotation="0 32.322 0" 
-      static-body>
+      rotation="0 32.322 0" >
     </a-entity>
+    <a-box id="table-collider"
+      visible="false"
+      width="1.990" 
+      height="1.090" 
+      depth="1.010" 
+      position="2.416 0.540 2.573" 
+      rotation="0 32.322 0"
+      static-body>
+    </a-box>
 
     <a-entity id="turntable" 
       turntable
       scale="0.040 0.040 0.040" 
       gltf-model="#turntable" 
-      position="2.950 1.124 2.223"
+      position="2.950 1.226 2.223"
       rotation="0 -147.440 0"
-      static-body
+      static-body="shape: cylinder"
       droppable
       collision-filter="collisionForces: false">
     </a-entity>
@@ -173,7 +183,7 @@
       stretchable 
       draggable 
       dropppable 
-      dynamic-body="shape: box; mass: 5;">
+      dynamic-body="shape: box; mass: 20;">
     </a-entity>
 
     <!-- TV/Video Player -->
