@@ -19,7 +19,7 @@ function getRecords() {
       console.log(releases);
       for (var i = 0; i < releases.length; i++) {
         var recordSleeve = window.document.createElement('a-entity');
-        recordSleeve.setAttribute('record-sleeve', 'cover: ' + releases[i].image + '; info: ' + JSON.stringify(releases[i]));
+        recordSleeve.setAttribute('record-sleeve', 'cover: ' + releases[i].image.replace('http://', 'https://') + '; info: ' + JSON.stringify(releases[i]));
         window.AFRAME.scenes[0].appendChild(recordSleeve);
       }
     })
