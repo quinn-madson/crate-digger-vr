@@ -16,7 +16,11 @@ window.AFRAME.registerComponent('record-sleeve', {
 		record.setAttribute('info', this.data.info)
 		var albumId = JSON.parse(this.data.info).id;
 		record.setAttribute('albumId', albumId)
-    this.el.appendChild(record)
+		this.el.appendChild(record)
+		//play on stretch
+		this.el.addEventListener('stretch-start', function (evt) {
+			playRecord(evt.originalTarget.attributes.albumid.value)
+		})
 	},
 	update: function () {},
 	remove: function () {},

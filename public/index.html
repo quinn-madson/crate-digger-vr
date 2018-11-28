@@ -15,6 +15,8 @@
   <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.1.2/dist/aframe-physics-system.min.js"></script>
   <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
   <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+  <script src="https://unpkg.com/aframe-material-collection/dist/aframe-yoga-layout.min.js"></script>
+  <script src="https://unpkg.com/aframe-material-collection/dist/aframe-material-collection.min.js"></script>
   <script src="/js/html-imports.min.js"></script>
   <script src="/js/phase-shift.component.js"></script>
   <script src="/js/record-sleeve.component.js"></script>
@@ -26,40 +28,33 @@
 </head>
 
 <body>
-  <a-scene networked-scene="room: basic; debug: true;" physics="friction:0.001; restitution: 0.3;iterations: 30; debug: false;">
+  <a-scene networked-scene="room: basic; debug: true;" physics="driver: local; friction:0.001; restitution: 0.3;iterations: 30; debug: true;">
     <a-assets>
       <img id="waitfortemplates" />
       <a-asset-item id="room" src="assets/hokage-room/scene.gltf"></a-asset-item>
       <a-asset-item id="table" src="assets/table/scene.gltf"></a-asset-item>
       <a-asset-item id="turntable" src="assets/turntable/scene.gltf"></a-asset-item>
+      <a-asset-item id="lp-obj" src="assets/record/Vinyl record.obj"></a-asset-item>
+      <a-asset-item id="lp-mtl" src="assets/record/Vinyl record.mtl"></a-asset-item>
       <a-asset-item id="crate" src="assets/crate/Storage Crate.gltf"></a-asset-item>
       <a-asset-item id="leftHand" src="assets/left-hand-new/left-hand.gltf"></a-asset-item>
       <a-asset-item id="rightHand" src="assets/right-hand-new/right-hand.gltf"></a-asset-item>
       <a-asset-item id="speaker" src="assets/speaker/speaker.gltf"></a-asset-item>
       <a-mixin id="touch" physics-collider  phase-shift collision-filter="collisionForces: false"
-        static-body="shape: sphere; sphereRadius: 0.02" super-hands=" colliderEvent: collisions;
+        static-body="shape: sphere; sphereRadius: 0.06" super-hands=" colliderEvent: collisions;
                       colliderEventProperty: els;
                       colliderEndEvent: collisions;
                       colliderEndEventProperty: clearedEls;">
       <a-asset-item id="tv" src="assets/tv/tv.gltf"></a-asset-item>
-      <a-mixin id="touch" 
-        physics-collider 
-        phase-shift 
-        collision-filter="collisionForces: false" 
-        static-body="shape: sphere; sphereRadius: 0.04"
-        super-hands="colliderEvent: collisions;
-          colliderEventProperty: els;
-          colliderEndEvent: collisions;
-          colliderEndEventProperty: clearedEls;">
-      </a-mixin>
       <a-mixin id="record" 
         geometry="primitive: box; width: 0.4; height: 0.4; depth: 0.007;" 
         grabbable 
         draggable
         droppable
-        sleepy="speedLimit:0.8;"
         dynamic-body="shape: box; mass: 10;"
         stretchable 
+        event-set__dragon="_event: dragover-start; material.wireframe: true"
+        event-set__dragoff="_event: dragover-end; material.wireframe: false"
         class="interact" 
         material="side: double" 
         position="2.416 1 2.573"
@@ -117,7 +112,7 @@
         <a-sphere class="head" visible="false" random-color></a-sphere>
       </a-entity>
       <a-entity class="right-controller" 
-        mixin="touch point" 
+        mixin="point touch" 
         position 
         rotation 
         teleport-controls="cameraRig: #cameraRig; teleportOrigin: #player; button: trigger;"
@@ -170,6 +165,9 @@
       droppable
       collision-filter="collisionForces: false">
     </a-entity>
+    <a-entity id="lp"
+      obj-model="obj: #lp-obj; mtl: #lp-mtl">
+    </a-entity>
 
     <!-- Crate -->
     <a-entity id="crate"
@@ -197,11 +195,13 @@
     </a-entity>
 
     <!-- speakers-->
-
     <a-entity id="speaker" gltf-model="#speaker" position="7.254 0.011 -1.967" rotation="90 19.325 0" scale="0.075 0.075 0.075"></a-entity>
     <a-entity id="speaker2" gltf-model="#speaker" position="-3.731939269615076 0.011 -6.607403136367324" rotation="90 128.86044603067273 0" scale="0.075 0.075 0.075"></a-entity>
     <!-- /speaker-->
 
+    <!-- UI -->
+    
+    
     <!-- Floor -->
     <a-entity id="floor"
       position="0 0 0" 

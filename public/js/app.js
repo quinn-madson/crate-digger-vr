@@ -1,29 +1,88 @@
+var recordCount = 10;
+
 document.addEventListener('DOMContentLoaded', function () {
   console.log('>> APP INIT <<')
   setTimeout(function () {
     getRecords();
   }, 5000)
+
+  document.addEventListener('abuttondown', recordRain) // oculus
+  document.addEventListener('bbuttondown', hitItJohnny) // oculus
+  document.addEventListener('xbuttondown', stopPlayback) // oculus
+  document.addEventListener('menudown', recordRain) // vive
 });
+
+function hitItJohnny() {
+  console.log('exec hitItJohnny')
+  playRecord(14428)
+}
+
+function stopPlayback() {
+  console.log('exec stopPlayback')
+  window.document.querySelector('#hifi').components.sound.stopSound();
+}
+
+function recordRain() {
+  if (recordCount > 50) {
+    document.querySelectorAll('.record-sleeve').forEach(function (a) {
+      a.parentElement.removeChild(a);
+      recordCount = 0;
+    });
+  }
+  let artists = [
+    383, //ramones
+    // 9604, //velvet underground
+    // 364, //beach boys
+    // 69816, //dick dale
+    138, //diana ross
+    133, //ella fitzgerald
+    6227, // oingo boingo
+    1448 //johnny cash
+  ]
+  let artistId = artists[Math.floor(Math.random() * artists.length)]
+  console.log('>>>> recordRain: ', artistId)
+  window.fetch(
+    'https://api.7digital.com/1.2/artist/releases?shopId=2020&oauth_consumer_key=7d4vr6cgb392&artistId=' + artistId + '&usageTypes=adsupportedstreaming&imageSize=800', {
+      headers: new window.Headers({
+        'accept': 'application/json'
+      })
+    }).then(function (response) {
+    return response.json();
+  })
+  .then(function (resJson) {
+    var releases = resJson.releases.releases;
+    console.log(releases);
+    for (var i = 0; i < releases.length; i++) {
+      var release = releases[i]
+      var recordSleeve = window.document.createElement('a-entity');
+      recordSleeve.setAttribute('class', 'record-sleeve');
+      recordSleeve.setAttribute('record-sleeve', 'cover: ' + release.image.replace('http://', 'https://') + '; info: ' + JSON.stringify(release));
+      window.AFRAME.scenes[0].appendChild(recordSleeve);
+      recordCount = recordCount + 1;
+    }
+  })
+}
 
 function getRecords() {
   window.fetch(
-      'https://api.7digital.com/1.2/artist/releases?shopId=2020&oauth_consumer_key=7d4vr6cgb392&artistId=1448&usageTypes=adsupportedstreaming&imageSize=800', {
+    'https://api.7digital.com/1.2/artist/releases?shopId=2020&oauth_consumer_key=7d4vr6cgb392&artistId=1448&usageTypes=adsupportedstreaming&imageSize=800', {
         headers: new window.Headers({
           'accept': 'application/json'
         })
       }).then(function (response) {
-      return response.json();
-    })
-    .then(function (resJson) {
-      var releases = resJson.releases.releases;
-      console.log(releases);
-      for (var i = 0; i < releases.length; i++) {
-        var release  = releases[i]
-        var recordSleeve = window.document.createElement('a-entity');
-        recordSleeve.setAttribute('record-sleeve', 'cover: ' + release.image.replace('http://', 'https://') + '; info: ' + JSON.stringify(release));
-        window.AFRAME.scenes[0].appendChild(recordSleeve);
-      }
-    })
+        return response.json();
+      })
+      .then(function (resJson) {
+        var releases = resJson.releases.releases;
+        console.log(releases);
+        for (var i = 0; i < releases.length; i++) {
+          var release  = releases[i]
+          var recordSleeve = window.document.createElement('a-entity');
+          recordSleeve.setAttribute('class', 'record-sleeve');
+          recordSleeve.setAttribute('record-sleeve', 'cover: ' + release.image.replace('http://', 'https://') + '; info: ' + JSON.stringify(release));
+          window.AFRAME.scenes[0].appendChild(recordSleeve);
+        }
+      })
 }
 
 function playRecord(albumId) {
