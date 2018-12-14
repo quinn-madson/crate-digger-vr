@@ -3,7 +3,12 @@ var http    = require("http");              // http server core module
 var express = require("express");           // web framework external module
 var serveStatic = require('serve-static');  // serve static files
 var socketIo = require("socket.io");        // web socket external module
-var easyrtc = require("easyrtc");               // EasyRTC external module
+var easyrtc = require("easyrtc");           // EasyRTC external module
+require('dotenv').config()                  // Global env variables
+var session = require("express-session");   // Express sessions handling
+var passport = require("passport");         // Authentication middleware
+var SpotifyStrategy = require('passport-spotify').Strategy;  // Spotify strategy for Passport
+
 
 // Set process name
 process.title = "node-easyrtc";
@@ -15,6 +20,79 @@ var port = process.env.PORT || 8080;
 var app = express();
 app.use(express.static('public'));
 
+// Passport and Session Config
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/auth/spotify');
+  }  
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.use(session({
+    secret: process.env.cookieSecret || "top99secret42cookie",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1.21e+9 }
+}));
+app.use( function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+  
+passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+});
+
+
+passport.use(
+    new SpotifyStrategy(
+      {
+        clientID: process.env.SPOTIFY_CLIENT_ID,
+        clientSecret: process.env.SPOTIFY_SECRET,
+        callbackURL: 'http://localhost:8080/auth/spotify/callback',
+        scope: ["user-modify-playback-state", "streaming"]
+      },
+      function(accessToken, refreshToken, expires_in, profile, done) {
+        
+        process.nextTick(function() {
+            return done(null, {profile, accessToken});
+        });
+    })
+  );
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/', ensureAuthenticated, function(req, res) {
+    res.render('index.ejs', { user: req.user });
+});
+
+
+app.get('/auth/spotify', passport.authenticate('spotify', function(req, res) {
+    // The request will be redirected to spotify for authentication, so this
+    // function will not be called.
+    })
+);
+app.get('/auth/spotify/callback', passport.authenticate('spotify', {
+    failureRedirect: '/login' }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      res.redirect('/');
+    }
+);
+app.get('/login', function(req, res) {
+    res.render('login.ejs', { user: req.user });
+});
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
 // Start Express http server
 var webServer = http.createServer(app);
 
