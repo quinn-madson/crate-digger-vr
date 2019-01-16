@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <title>Crate Digger VR</title>
   <meta name="description" content="Crate Digger VR">
+  <script>
+    var accessToken = "<%= user.accessToken %>"
+  </script>
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
   <script src="easyrtc/easyrtc.js"></script>
@@ -22,6 +26,7 @@
   <script src="/js/oauth-signature.js"></script>
   <script src="/js/app.js"></script>
   <script src="/js/tv-component.js"></script>
+  <script src="/js/spotify-playback.js"></script>
   <link rel="import" href="templates.html">
 </head>
 

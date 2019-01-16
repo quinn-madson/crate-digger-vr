@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Crate Sessions VR</title>
+</head>
+
+<body>
+	<% if (!user) { %>
+	<p>
+		<a href="/">Home</a> |
+		<a href="/auth/spotify">Login with Spotify</a>
+	</p>
+	<% } else { %>
+	<p>
+		<a href="/">Home</a> |
+		<a href="/logout">Log Out</a>
+	</p>
+	<% } %>
+</body>
+
+</html>
